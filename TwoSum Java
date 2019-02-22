@@ -12,7 +12,3 @@ class Solution {
     }
 }
 
-//Steps
-//1. scan num[i] as a key in the dict; 
-//2. if found, return dict[num[i]], i => first seen first out; 
-//3. if not found, create a new key using [target - num[i]], value equals i(the index)
