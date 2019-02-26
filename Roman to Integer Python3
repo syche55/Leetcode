@@ -1,0 +1,27 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        dict = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000}
+        cnt = len(s)
+        conv = dict[s[0]]
+        for i in range(1, cnt):
+            if dict[s[i]]<=dict[s[i-1]]:
+                conv = dict[s[i]]+conv
+            else:
+                conv = (-(dict[s[i-1]]))*2+dict[s[i]]+conv
+        return conv
+        
+
+//Concise solution:
+d = {'M':1000, 'D':500, 'C':100, 'L':50, 'X':10, 'V':5, 'I':1}
+
+def romanToInt(self, s):
+    res, p = 0, 'I'
+    for c in s[::-1]:
+        res, p = res - d[c] if d[c] < d[p] else res + d[c], c
+    return res
+    
+//s[::-1]倒序检查, 因为正序中s[i]可以大于s[i+1],也可以小于,
+//但我们不知道小于的后面是不是还有大于(s[i+2]和s[i+1]是否构成规则数),因为我们还没查到s[i+1]
+//倒序时, s检查到的数应该永远比前一个大, 如果不大就减去, 一次就可以了
+//一个东西,另一个东西=值1,值2
+//某 = 某 if 条件 else 条件
