@@ -1,0 +1,37 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+
+        slist = list(s)
+        stack = []
+        dict = {")":"(", "]":"[", "}":"{"}
+        if len(slist) == 0:
+            return True
+        elif len(slist) % 2 != 0:
+            return False
+        else:
+            for char in s:
+                if char in dict:
+                    popvalue = stack.pop() if stack else '#'
+                    if dict[char] != popvalue:
+                        return False
+                else:
+                    stack.append(char)
+            return not stack
+            
+            
+#counter: counts elements in a list
+#from collections import Counter
+#cnt = Counter(list)
+
+#stack: FILO
+#The stack data structure can come in handy here in representing this recursive structure of the problem.
+#if char is an open bracket, it means it is a value, not a key, it is not in the dict, store it in stack and wait for the key; 
+#if char is a closed bracket, it means it is in the dict, use it as the key to find its value dict[char]
+#compare the last char stored in the stack. the last char would always be a open bracket. if they are not a match, return False
+#if they are a match, the stack is empty.
+#we do not want any thing like [{]} shows up, which means we dont want crossing bracket.
+#stack should be empty, if not empty, there must be single bracket left
+#if stack: stack is not empty; not stack: stack is empty, valid
+#%2==0: even number; %2!=0: old number
+#for char in s: can divide a string into single chars
+
