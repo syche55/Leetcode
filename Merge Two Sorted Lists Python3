@@ -10,13 +10,14 @@ class Solution:
             return l2
         if not l2:
             return l1
-        
-        answer = None
         if l1.val < l2.val:
-            answer = l1
-            answer.next = self.mergeTwoLists(l1.next, l2)
+            l1.next = self.mergeTwoLists(l1.next, l2)
+            return l1
         else:
-            answer = l2
-            answer.next = self.mergeTwoLists(l1, l2.next)
-        
-        return answer
+            l2.next = self.mergeTwoLists(l1, l2.next)
+            return l2
+
+
+
+# a ListNode contains a value and a next-ListNode
+# first four lines are base lines, they stop the recursion 
