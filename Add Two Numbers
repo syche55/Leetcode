@@ -1,0 +1,45 @@
+Example:
+
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+Explanation: 342 + 465 = 807.
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        nod_1 = l1
+        v = 0
+        list_1 = []
+        while nod_1 is not None:
+            v = nod_1.val
+            list_1.append(v)
+            nod_1 = nod_1.next        
+        cnt1 = len(list_1)        
+        num_1 = 0
+        for j in range(0, cnt1):
+            num_1 = num_1 + list_1[j]*(10**j)        
+        nod_2 = l2
+        v = 0
+        list_2 = []
+        while nod_2 is not None:
+            v = nod_2.val
+            list_2.append(v)
+            nod_2 = nod_2.next        
+        cnt2 = len(list_2)        
+        num_2 = 0
+        for i in range(0, cnt2):
+            num_2 = num_2 + list_2[i]*(10**i)
+        answer = [int(dig) for dig in str(num_1 + num_2)]
+        answer.reverse()
+        answer_Node = ListNode(answer[0])
+        head_Node = answer_Node
+        for i in range (1, len(answer)):             
+            answer_Node.next = ListNode(answer[i])
+            answer_Node = answer_Node.next
+        return head_Node
