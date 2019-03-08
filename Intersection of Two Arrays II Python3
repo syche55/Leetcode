@@ -1,0 +1,19 @@
+# Input: nums1 = [1,2,2,1], nums2 = [2,2]
+# Output: [2,2]
+# Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+# Output: [4,9]
+
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        ans = []
+        x = list(set(nums1))
+        y = list(set(nums2))
+        for i in x:
+            if i in y:
+                cnt = min(nums1.count(i),nums2.count(i))
+                for j in range(cnt):
+                    ans.append(i)
+        return ans
+        
+        
