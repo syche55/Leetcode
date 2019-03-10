@@ -1,0 +1,35 @@
+#Input: [0,1,0,3,12]
+#Output: [1,3,12,0,0]
+
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        counter = 0
+        i = 0        
+        for i in range(0, len(nums)):
+            if 0 in nums:
+                nums.remove(0)
+                i += 1
+                counter += 1            
+        for j in range(0, counter):
+            nums.append(0)
+# The difference between del and remove and pop: del and pop use index to remove, but pop will return the removed value
+# remove removes the first matching value
+            
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        j = 0
+        temp = 0
+        for i in range(0, len(nums)):
+            if nums[i] != 0:
+                temp = nums[j]
+                nums[j] = nums[i]
+                nums[i] = temp
+                j += 1
+#Removing elements and then adding them back will take more resources, we tend to use swap
+#j works as a counter then we know which one is not zero, and we swap zero with that number
+
+          
