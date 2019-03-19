@@ -1,0 +1,49 @@
+# Given binary tree [3,9,20,null,null,15,7],
+#    3
+#   / \
+#  9  20
+#    /  \
+#   15   7
+#return its minimum depth = 2.
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def minDepth(self, root: TreeNode) -> int:
+        if root == None:
+            return 0
+        elif root.left == None and root.right == None:
+            return 1
+        elif root.left and root.right:
+            return min(self.minDepth(root.left), self.minDepth(root.right))+1
+        else:
+            return max(self.minDepth(root.left), self.minDepth(root.right))+1
+            
+            
+#recursion & tree
+
+
+class Solution:
+    def minDepth(self, root: TreeNode) -> int:
+        if root == None:
+            return 0
+        res = 0
+        q = [root]
+        while len(q)>0:
+            res += 1
+            p = []
+            for n in q:
+                if not n.left and not n.right:
+                    return res
+                if n.left:
+                    p.append(n.left)
+                if n.right:
+                    p.append(n.right)
+                q = p
+                
+#dfs & tree
