@@ -1,0 +1,48 @@
+Input: 
+    2
+   / \
+  2   5
+     / \
+    5   7
+
+Output: 5
+Explanation: The smallest value is 2, the second smallest value is 5.
+Example 2:
+Input: 
+    2
+   / \
+  2   2
+
+Output: -1
+Explanation: The smallest value is 2, but there isn't any second smallest value.
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def findSecondMinimumValue(self, root: TreeNode) -> int:
+        if not root:
+            return -1
+        val = []
+        q = [root]
+        while len(q)>0:
+            p = []
+            for n in q:
+                if n not in val:
+                    val.append(n.val)
+                if n.left:
+                    p.append(n.left)
+                if n.right:
+                    p.append(n.right)
+                q = p
+        val = sorted(list(set(val)))
+        if len(val)>1:
+            return val[1]
+        else:
+            return -1
