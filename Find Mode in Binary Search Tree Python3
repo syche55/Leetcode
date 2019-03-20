@@ -1,0 +1,36 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def findMode(self, root: TreeNode) -> List[int]:
+        def findDict(self, root, dict):
+            # Edge
+            if not root:
+                return            
+            # Process
+            if root.val in dict:
+                dict[root.val] += 1
+            else:
+                dict[root.val] = 1                
+            # Recursion
+            findDict(self, root.left, dict)
+            findDict(self, root.right, dict)
+        
+        # Edge
+        if not root:
+            return []        
+        ans = []
+        dict = {}
+        findDict(self, root, dict)
+        max_value = max(dict.values())
+        for key in dict:
+            if dict[key] == max_value:
+                ans.append(key)
+        return ans
+        
+        
+# When a question asks about 'mode', most frequent number, try dict/hash
