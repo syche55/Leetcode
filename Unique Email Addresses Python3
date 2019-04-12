@@ -1,0 +1,28 @@
+"""
+Input: ["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]
+Output: 2
+Explanation: "testemail@leetcode.com" and "testemail@lee.tcode.com" actually receive mails
+"""
+
+class Solution:
+    def numUniqueEmails(self, emails: List[str]) -> int:
+        archive = []
+        for e in emails:
+            local = e[0:e.find('@')]
+            if '+' in local:
+                local = e[0:e.find('+')]
+            local = local.replace('.', '')
+            domain = e[e.find('@'):e.find(' ')]           
+            archive.append(local + domain)
+        return len(set(archive))
+
+
+class Solution(object):
+    def numUniqueEmails(self, emails):
+        seen = set()
+        for email in emails:
+            local, domain = email.split('@')
+            if '+' in local:
+                local = local[:local.index('+')]
+            seen.add(local.replace('.','') + '@' + domain)
+        return len(seen)
