@@ -1,0 +1,26 @@
+"""
+[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+Example:
+Input: words = ["gin", "zen", "gig", "msg"]
+Output: 2
+Explanation: 
+The transformation of each word is:
+"gin" -> "--...-."
+"zen" -> "--...-."
+"gig" -> "--...--."
+"msg" -> "--...--."
+
+There are 2 different transformations, "--...-." and "--...--.".
+"""
+
+class Solution:
+    def uniqueMorseRepresentations(self, words: List[str]) -> int:
+        Morse = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+        ans = []
+        a = ''
+        for word in words:
+            for w in word:
+                a += Morse[ord(w) - ord('a')]
+            ans.append(a)
+            a = ''
+        return len(set(ans))
