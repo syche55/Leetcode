@@ -1,0 +1,54 @@
+class Solution:
+    def numRookCaptures(self, board: List[List[str]]) -> int:
+        R_row = 0
+        R_col = 0
+        p_col = 0
+        ans = 0
+        for row in board:
+            if 'R' in row:
+                R_row = board.index(row)
+                R_col = row.index('R')
+        for i in range(0, R_col):
+            if board[R_row][i] == 'p':
+                p_col = i        
+        if 'p' in board[R_row][0:R_col]:
+            if 'B' not in board[R_row][p_col:R_col]:
+                ans += 1
+        if 'p' in board[R_row][R_col:8]:
+            p_col = board[R_row][R_col:8].index('p')+R_col
+            if 'B' not in board[R_row][R_col:p_col]:
+                ans += 1                    
+        p_col = 0
+        p_row = 0
+        flag = ''
+        for i in range(0, R_row):
+            if board[i][R_col]=='p':
+                p_col = board[i].index('p')
+                p_row = i                
+                for j in range(p_row, R_row):
+                    if board[j][R_col] != 'B':
+                        flag = True
+                    else:
+                        flag = False
+        if flag == True:
+            ans+=1         
+        has_p = False
+        for i in range(R_row,8):
+            if board[i][R_col]=='p':
+                p_col = board[i].index('p')
+                p_row = i 
+                print(p_col, p_row)
+                has_p = True
+                break                
+        if has_p == True:       
+            for j in range(R_row, p_row):
+                print(board[j][R_col])
+                if board[j][R_col] != 'B':
+                    flag = True
+                else:
+                    flag = False
+            if flag == True:
+                ans +=1
+        return ans
+                
+            
