@@ -1,0 +1,21 @@
+"""
+MovingAverage m = new MovingAverage(3);
+m.next(1) = 1
+m.next(10) = (1 + 10) / 2
+m.next(3) = (1 + 10 + 3) / 3
+m.next(5) = (10 + 3 + 5) / 3
+"""
+
+def __init__ (self, size:int):
+        self.deque = collections.deque(maxlen = size)
+def next(self, val: int) -> float:
+        queue = self.deque
+        queue.append(val)
+        return sum(queue)/len(queue)
+        
+        
+        
+#maxlen
+#__init__
+#deque
+
