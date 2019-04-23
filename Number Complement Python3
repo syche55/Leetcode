@@ -1,0 +1,20 @@
+"""
+Input: 5
+Output: 2
+Explanation: The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.
+"""
+
+class Solution:
+    def findComplement(self, num: int) -> int:
+        bi = f'{num:32b}'
+        ans = ''
+        for i in bi:
+            if i == '0':
+                ans += '1'
+            if i == '1':
+                ans += '0'
+        output = 0
+        for digit in ans:
+            output = output * 2 + int(digit)
+            print(output)
+        return output
