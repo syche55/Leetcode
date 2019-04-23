@@ -1,0 +1,24 @@
+"""
+Input: S = "loveleetcode", C = 'e'
+Output: [3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]
+"""
+class Solution:
+    def shortestToChar(self, S: str, C: str) -> List[int]:
+        ans = []
+        first_position = S.find(C)
+        last_position = 0
+        for i in range(0, first_position+1):
+            ans.append(first_position - i)
+        last_position = first_position
+        for j in range(first_position+1, len(S)):
+            if S[j] == C:
+                ans.append(0)
+                last_position = j
+            else:
+                if S[j:len(S)].find(C)<0:
+                    ans.append(j - last_position)
+                else:
+                    ans.append(min(j - last_position, S[j:len(S)].find(C)))
+        return ans
+                
+        
