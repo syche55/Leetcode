@@ -1,0 +1,60 @@
+"""
+Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+"""
+
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        s.reverse()
+        
+        
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        i, j = 0, len(s)-1
+        while i < j:
+            s[i], s[j] = s[j], s[i]
+            i += 1
+            j -= 1
+            
+            
+-------------------------------------------------
+
+Option 1: list.reverse()
+
+Python lists can be reversed in-place with the list.reverse() method. This is a great option to reverse the order of a list (or any mutable sequence) in Python. It modifies the original container in-place which means no additional memory is required. However the downside is, of course, that the original list is modified.
+
+>>> lst = [1, 2, 3, 4, 5]
+>>> lst.reverse()
+>>> lst
+[5, 4, 3, 2, 1]
+Reverses the list in-place
+Fast, doesn’t take up extra memory
+Modifies the original list
+
+
+Option 2: List Slicing Trick
+
+You can use Python’s list slicing syntax to create a reversed copy of a list. This works well, however it is slightly arcane and therefore not very Pythonic, in my opinion.
+
+>>> lst = [1, 2, 3, 4, 5]
+>>> lst[::-1]
+[5, 4, 3, 2, 1]
+Creates a reversed copy of the list
+Takes up memory but doesn’t modify the original
+
+
+Option 3: reversed()
+
+Python’s built-in reversed() function allows you to create a reverse iterator for an existing list or sequence object. This is a flexible and clean solution that relies on some advanced Python features—but it remains readable due to the clear naming of the reversed() function.
+
+>>> lst = [1, 2, 3, 4, 5]
+>>> list(reversed(lst))
+[5, 4, 3, 2, 1]
+Returns an iterator that returns elements in reverse order
+Doesn’t modify the original
+Might need to be converted into a list object again
