@@ -1,0 +1,22 @@
+"""
+Input: [[1,2,3],[4,5,6]]
+Output: [[1,4],[2,5],[3,6]]
+"""
+
+class Solution:
+    def transpose(self, A: List[List[int]]) -> List[List[int]]:
+        i = len(A)
+        j = len(A[0])
+        container = []
+        ans = []
+        for row in range(j):
+            for col in range(i):
+                container.append(A[col][row])
+            ans.append(container)
+            container = []
+        return ans
+        
+ #1 Line Version:
+ class Solution:
+    def transpose(self, A: List[List[int]]) -> List[List[int]]:
+        return [[A[j][i] for j in range(len(A))] for i in range(len(A[0]))]
