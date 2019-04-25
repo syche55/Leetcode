@@ -1,0 +1,26 @@
+"""
+Input:
+matrix = [
+  [1,2,3,4],
+  [5,1,2,3],
+  [9,5,1,2]
+]
+Output: True
+Explanation:
+In the above grid, the diagonals are:
+"[9]", "[5, 5]", "[1, 1, 1]", "[2, 2, 2]", "[3, 3]", "[4]".
+In each diagonal all elements are the same, so the answer is True.
+"""
+
+
+class Solution:
+    def isToeplitzMatrix(self, matrix: List[List[int]]) -> bool:
+        for x in range(len(matrix)):
+            for y in range(len(matrix[0])):
+                if x >0 and y >0:
+                    if matrix[x][y] != matrix[x-1][y-1]:
+                        return False
+        return True
+        
+        
+#Index out of range issue if we do [x][y]  [x+1][y+1]
