@@ -1,0 +1,39 @@
+"""
+A word is uncommon if it appears exactly once in one of the sentences, and does not appear in the other sentence.
+"""
+
+class Solution:
+    def uncommonFromSentences(self, A: str, B: str) -> List[str]:
+        dict = {}
+        for word in A.split():
+            dict[word] = dict.get(word, 0) + 1
+        for word in B.split():
+            dict[word] = dict.get(word, 0) + 1
+        return [word for word in dict if dict[word] == 1]
+#split, dict[x] = dict.get(x, 0)+1, return [xx for xx in dict if dict[xx]...]
+
+
+class Solution:
+    def uncommonFromSentences(self, A: str, B: str) -> List[str]:
+        dict_a = {}
+        dict_b = {}
+        a = A.split(' ')
+        for word in a:
+            if word in dict_a:
+                dict_a[word] +=1
+            else:
+                dict_a[word]=1
+        b = B.split(' ')
+        for word in b:
+            if word in dict_b:
+                dict_b[word] +=1
+            else:
+                dict_b[word]=1
+        ans = []
+        for word in dict_a:
+            if dict_a[word]==1 and word not in dict_b:
+                ans.append(word)
+        for word in dict_b:
+            if dict_b[word]==1 and word not in dict_a:
+                ans.append(word)
+        return ans
