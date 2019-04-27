@@ -1,0 +1,36 @@
+"""
+Input:
+[[0,1,0,0],
+ [1,1,1,0],
+ [0,1,0,0],
+ [1,1,0,0]]
+Output: 16
+"""
+
+class Solution:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        row = len(grid)
+        col = len(grid[0])
+        count = 0
+        for r in range(0, row-1):
+            for c in range(0, col-1):
+                if grid[r][c]==1:
+                    if grid[r+1][c] ==1:
+                        count+=2                        
+                    if grid[r][c+1]==1:
+                        count+=2
+        for r in range(0, row-1):
+            if grid[r][col-1] ==1:
+                if grid[r+1][col-1]==1:
+                    count+=2
+        for c in range(0, col-1):
+            if grid[row-1][c]==1:
+                if grid[row-1][c+1]==1:
+                    count+=2
+        island = 0
+        for r in range(0, row):
+            for c in range(0, col):
+                if grid[r][c] == 1:
+                    island +=1
+        return island*4-count
+                
