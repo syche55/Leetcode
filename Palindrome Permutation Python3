@@ -1,0 +1,16 @@
+"""
+Given a string, determine if a permutation of the string could form a palindrome.
+"""
+
+class Solution:
+    def canPermutePalindrome(self, s: str) -> bool:
+        dict = {}
+        odd = 0        
+        for i in s:
+            dict[i] = dict.get(i,0)+1
+        for i in dict:
+            if dict[i]%2 !=0:
+                odd +=1
+                if odd >1:
+                    return False
+        return True
