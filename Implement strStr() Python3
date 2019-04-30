@@ -11,7 +11,4 @@ class Solution:
             return 0
         if len(needle)>len(haystack):
             return -1
-        for i in needle:
-            if i not in haystack:
-                return -1
         return haystack.find(needle)
