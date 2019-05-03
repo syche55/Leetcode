@@ -1,0 +1,23 @@
+"""
+Input: [1,2,3]
+Output: [1,2,4]
+Explanation: The array represents the integer 123.
+"""
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        num = int("".join(map(str, digits)))+1
+        return [int(i) for i in str(num)]
+        
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        l = len(digits)
+        num = 0
+        for i in range(l):
+            num += digits[i] *(10**(l-1-i))
+        num = str(num+1)
+        return [int(i) for i in num]        
+        
+        
+        
+        
