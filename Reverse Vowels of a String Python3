@@ -1,0 +1,23 @@
+"""
+Input: "leetcode"
+Output: "leotcede"
+"""
+
+
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        v = ['a', 'e', 'i', 'o', 'u']
+        s = list(s)
+        head, tail = 0, len(s)-1
+        while head < tail:
+            while s[head].lower() not in v and head<tail:
+                head += 1
+            while s[tail].lower() not in v and head<tail:
+                tail -= 1            
+            s[head], s[tail] = s[tail], s[head]
+            head += 1
+            tail -= 1
+        return "".join(s)
+        
+        
+        head < tail has to be there, otherwise you would have index out of range error
