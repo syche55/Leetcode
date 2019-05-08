@@ -1,0 +1,17 @@
+"""
+"""
+
+class Solution:
+    def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:
+        deck.sort()
+        ans = collections.deque()
+        ans.append(deck.pop())
+        for i in range(0, len(deck)):
+            ans.appendleft(ans.pop())
+            if deck:
+                ans.appendleft(deck.pop())
+        return list(ans)
+        
+        
+#deque allows you to do appendleft
+#return type should match, otherwise error
