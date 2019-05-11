@@ -1,0 +1,42 @@
+"""
+Input: S = "ababcbacadefegdehijhklij"
+Output: [9,7,8]
+Explanation:
+The partition is "ababcbaca", "defegde", "hijhklij".
+This is a partition so that each letter appears in at most one part.
+"""
+
+#40%
+class Solution:
+    def partitionLabels(self, S: str) -> List[int]:
+        dict = {}
+        sum = 0
+        ans = []
+        for i in range(len(S)):
+            dict[S[i]] = dict.get(S[i], 0) + 1
+            if S[i] not in S[i+1::]:
+                sum += dict[S[i]]
+                del dict[S[i]]
+            if not dict:
+                ans.append(sum)
+                sum = 0
+        return ans
+        
+#100%        
+class Solution:
+    def partitionLabels(self, S: str) -> List[int]:
+        dict = {c:i for i,c in enumerate(S)}
+        start = 0
+        end = 0
+        ans = []
+        for key in dict: 
+            if S.index(key) > end:
+                pre_start = start
+                pre_end = end
+                start = S.index(key)
+                end = dict[key]
+                ans.append(start - pre_start)
+            if dict[key] >= end:
+                end = dict[key]
+        ans.append(len(S) - sum(ans))
+        return ans
