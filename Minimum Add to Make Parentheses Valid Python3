@@ -1,0 +1,13 @@
+"""
+Input: "()))(("
+Output: 4
+"""
+#99.82%
+class Solution:
+    def minAddToMakeValid(self, S: str) -> int:
+        stack = ""
+        for s in S:
+            stack += s
+            while "()" in stack:
+                stack = stack.replace("()","")
+        return len(stack)
