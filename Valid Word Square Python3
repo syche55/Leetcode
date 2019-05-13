@@ -1,0 +1,33 @@
+"""
+Input:
+[
+  "abcd",
+  "bnrt",
+  "crm",
+  "dt"
+]
+
+Output:
+true
+"""
+
+
+class Solution:
+    def validWordSquare(self, words: List[str]) -> bool:
+        if len(words)!= len(words[0]):
+            return False
+        for j in range(len(words[0])):
+            col = ""
+            for i in range(len(words[j])):                
+                try:
+                    col += words[i][j]
+                except:
+                    return False
+            if col != words[j]:
+                print(col,words[j])
+                return False
+        return True
+
+        
+
+        
