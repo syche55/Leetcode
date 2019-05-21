@@ -1,0 +1,26 @@
+"""
+Input: [1,2], [1,2,3]
+
+Output: 2
+
+Explanation: You have 2 children and 3 cookies. The greed factors of 2 children are 1, 2. 
+You have 3 cookies and their sizes are big enough to gratify all of the children, 
+You need to output 2.
+"""
+
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        g.sort()
+        s.sort()
+        child_num = len(g)
+        cookie_num = len(s)
+        childi = 0
+        cookiei = 0
+        while childi < child_num and cookiei < cookie_num:
+            if g[childi] <= s[cookiei]:
+                childi += 1
+            cookiei += 1
+        return childi
+
+#pre calculate len(g) can save time
+#this solution (99%) is much quicker than using traversal(8%)
