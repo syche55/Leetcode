@@ -1,0 +1,32 @@
+"""
+Input: [5, 4, 3, 2, 1]
+Output: ["Gold Medal", "Silver Medal", "Bronze Medal", "4", "5"]
+Explanation: The first three athletes got the top three highest scores, so they got "Gold Medal", "Silver Medal" and "Bronze Medal". 
+For the left two athletes, you just need to output their relative ranks according to their scores.
+"""
+
+
+#92%, map, dict
+class Solution:
+    def findRelativeRanks(self, nums: List[int]) -> List[str]:        
+        pool = sorted(nums, reverse = True)
+        rank = ["Gold Medal", "Silver Medal", "Bronze Medal"] + list(map(str, range(4, len(nums)+1)))
+        return list(map(dict(zip(pool,rank)).get, nums))
+    
+        
+        
+#5%
+class Solution:
+    def findRelativeRanks(self, nums: List[int]) -> List[str]:        
+        pool = sorted(nums, reverse = True)
+        ans = []
+        for i in nums:
+            if pool.index(i) == 0:
+                ans.append("Gold Medal")
+            elif pool.index(i)==1:
+                ans.append("Silver Medal")
+            elif pool.index(i) == 2:
+                ans.append("Bronze Medal")
+            else:
+                ans.append(str(pool.index(i)+1))
+        return ans
