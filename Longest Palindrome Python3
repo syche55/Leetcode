@@ -1,0 +1,43 @@
+"""
+Input:
+"abccccdd"
+Output:
+7
+Explanation:
+One longest palindrome that can be built is "dccaccd", whose length is 7.
+"""
+
+#96%
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        d = {}  
+        odd = 0
+        even = 0
+        ans = 0
+        for letter in s:
+            d[letter] = d.get(letter, 0) + 1
+        if len(d) == 1:
+            return len(s)
+        for key in d:
+            if d[key]%2 == 0:
+                ans += d[key]
+                odd += 1
+            else:
+                ans += d[key]-1
+                even += 1
+        if even == 0:
+            return ans
+        else:
+            return ans + 1
+
+
+#22%
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        container = []
+        for element in s:
+            if element in container:
+                container.remove(element)
+            else:
+                container.append(element)
+        return len(s) - len(container) + 1 if container else len(s)
