@@ -1,0 +1,21 @@
+"""
+Given nums = [3,2,2,3], val = 3,
+Your function should return length = 2, with the first two elements of nums being 2.
+"""
+
+#60%
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        while val in nums:
+            nums.remove(val)
+        return len(nums)
+        
+#96% Two-pointer
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        res = 0
+        for i in range(len(nums)):
+            if nums[i] != val:
+                nums[res] = nums[i]
+                res += 1
+        return res
