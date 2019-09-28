@@ -26,4 +26,5 @@ class Solution(object):
 
 
 # We are actually updating two things: i and j, i is the left bound, and j is the size of the window
-# When the sum is less than 0, it means the whole part could be ignored, the left bound starts from the current number(cur_sum = i)
+# When the sum is less than 0, it means the whole part could be ignored, 
+# the left bound starts from the current number(cur_sum = i)
