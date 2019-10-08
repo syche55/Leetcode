@@ -10,15 +10,15 @@ A solution set is:
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        plus = sorted([x for x in nums if x >0])  # 为什么不在下面sort是因为set在sort完之后就会变成list
+        plus = sorted([x for x in nums if x >0])   # 为什么不在下面sort是因为set在sort完之后就会变成list
         plus_set = set(plus)
         zero = [x for x in nums if x == 0]
         minus = sorted([x for x in nums if x < 0])
         minus_set = set(minus)
-        ans = set([])
+        ans = set([])   # 答案先设置称set之后可以再list 如果直接list很难再sort 因为元素是list, list not hashable
         # zero zero zero
         if len(zero) >= 3:
-            ans.add((0, 0, 0))
+            ans.add((0, 0, 0))  # set加元素不能用append, 要用add, add一个set 加进去如果已经有该元素则不会添加
         
         # zero plus minus
         if len(zero) >= 1:
