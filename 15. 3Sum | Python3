@@ -1,0 +1,43 @@
+"""
+Given array nums = [-1, 0, 1, 2, -1, -4],
+
+A solution set is:
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+"""
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        plus = sorted([x for x in nums if x >0])  # 为什么不在下面sort是因为set在sort完之后就会变成list
+        plus_set = set(plus)
+        zero = [x for x in nums if x == 0]
+        minus = sorted([x for x in nums if x < 0])
+        minus_set = set(minus)
+        ans = set([])
+        # zero zero zero
+        if len(zero) >= 3:
+            ans.add((0, 0, 0))
+        
+        # zero plus minus
+        if len(zero) >= 1:
+            for num in plus:
+                if -num in minus_set:
+                    ans.add((num, 0, -num))
+                    
+        # minus minus plus
+        for i in range(len(minus)):
+            for j in range(i+1, len(minus)):
+                p = -(minus[i] + minus[j])
+                if p in plus_set:
+                    ans.add((minus[i], minus[j], p))
+                    
+        # plus plus minus
+        for i in range(len(plus)):
+            for j in range(i+1, len(plus)):
+                m = -(plus[i] + plus[j])
+                if m in minus_set:
+                    ans.add((plus[i], plus[j], m))
+                    
+        return list(ans)
