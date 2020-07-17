@@ -1,0 +1,42 @@
+Input: n = 6, edges = [[0, 3], [1, 3], [2, 3], [4, 3], [5, 4]]
+
+     0  1  2
+      \ | /
+        3
+        |
+        4
+        |
+        5 
+
+Output: [3, 4]
+
+
+class Solution:
+    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        if not edges:
+            return [0]
+        d_raw = defaultdict(list)         
+        degree = [0 for i in range(n)]        // degree表示的是连接的入度，当入度为1时表示没什么可留恋的，拿出来鞭
+        for pair in edges:
+            d_raw[pair[0]].append(pair[1])
+            degree[pair[0]]+=1
+            d_raw[pair[1]].append(pair[0])
+            degree[pair[1]]+=1
+        d = dict(d_raw)
+        queue = []
+        for i in range(len(degree)):
+            if degree[i]==1:
+                queue.append(i)
+        res = []
+        while queue:
+            size = len(queue)       // 通过获取当前层数node个数保证不多鞭
+            current_level = []
+            for i in range(size):
+                current_node=queue.pop(0)
+                current_level.append(current_node)      
+                for connected_node in d[current_node]:
+                    degree[connected_node]-=1           //当前node相关node入度-1
+                    if degree[connected_node]==1:
+                        queue.append(connected_node)    
+                res = current_level
+        return res
